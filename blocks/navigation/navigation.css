@@ -1,0 +1,6 @@
+.navigation {
+  margin-top: 70px;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}

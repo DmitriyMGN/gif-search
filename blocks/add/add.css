@@ -1,0 +1,7 @@
+.add {
+    width: 600px;
+    margin: 50px auto 0;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}

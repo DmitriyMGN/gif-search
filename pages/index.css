@@ -26,3 +26,6 @@
 @import url(../blocks/gifs/__item/gifs__item.css);
 
 @import url(../blocks/random/random.css);
+
+@import url(../blocks/add/add.css);
+@import url(../blocks/add/__input/add__input.css);

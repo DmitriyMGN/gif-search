@@ -1,39 +1,36 @@
 export default class Tabs {
-    constructor(itemSelector, containerSelector, clickHandler){
-        this._tabs = Array.from(document.querySelectorAll(itemSelector));
-        this._tabsContainer = Array.from(document.querySelectorAll(containerSelector));
-        this._clickHandler = clickHandler;
+    constructor(tabsSelector, сontentSelector, activeTabSelector, activeTabContentSelector){   
+        this._tabsContainer = document.querySelector(tabsSelector);
+        this._tabsContentContainer = document.querySelector(сontentSelector);
+
+        this._tabsList = Array.from(this._tabsContainer.children);
+        this._tabsContentList = Array.from(this._tabsContentContainer.children);
+
+        this._activeTabSelector = activeTabSelector;
+        this._activeTabContentSelector = activeTabContentSelector;
+
+        this._activeTab = this._tabsContainer.querySelector(`.${this._activeTabSelector}`);
+        this._activeTabContent = this._tabsContentContainer.querySelector(`.${this._activeTabContentSelector}`);
+    }
+
+    _changeTab(tab){
+        this._activeTab.classList.remove(this._activeTabSelector);
+        this._activeTabContent.classList.remove(this._activeTabContentSelector);       
+
+        this._activeTab = tab;
+        this._activeTabContent = this._tabsContentContainer.querySelector(`#${tab.id}`);
+
+        this._activeTab.classList.add(this._activeTabSelector);
+        this._activeTabContent.classList.add(this._activeTabContentSelector);
     }
 
     setListeners(){
-        this._tabs.forEach(tab => {
+        this._tabsList.forEach(tab => {
             tab.addEventListener('click', (event) =>{
                 event.preventDefault();
-                this.changeTab(event.target);
+                this._changeTab(event.target);
             })
         }) 
-    }
-
-    changeTab(tab){
-
-        const neededTabContent = this._tabsContainer.find(item => item.id === tab.id)
-        console.log(neededTabContent)
-
-        this._tabs.forEach(item => {
-            item.classList.remove('navigation__link_active');
-        })
-
-        this._tabsContainer.forEach(item => {
-            item.classList.remove('tab-content_active');
-        })
-
-
-        tab.classList.add('navigation__link_active');
-
-
-        neededTabContent.classList.add('tab-content_active');
-
-
     }
 }
 

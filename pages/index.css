@@ -21,9 +21,12 @@
 @import url(../blocks/button/_type/_remove/button_type_remove.css);
 @import url(../blocks/button/_type/_search/button_type_search.css);
 @import url(../blocks/button/_type/_random-gif/button_type_random-gif.css);
+@import url(../blocks/button/_type/_add/button_type_add.css);
 
 @import url(../blocks/gifs/gifs.css);
 @import url(../blocks/gifs/__item/gifs__item.css);
+@import url(../blocks/gifs/_random/gifs_random.css);
+@import url(../blocks/gifs/__item/_type/gifs__item_type_random.css);
 
 @import url(../blocks/random/random.css);
 

@@ -1,0 +1,5 @@
+.gifs_random {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

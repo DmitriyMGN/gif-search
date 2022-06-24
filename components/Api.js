@@ -1,6 +1,6 @@
 export default class Api {
-    constructor(){   
-        this._baseUrl = 'https://api.giphy.com/v1/gifs';
+    constructor(url){   
+        this._baseUrl = url;
         this._key = '?api_key=LgKQAIWNj0vz4nfwGHULAscH7a9nyP5R';
         this._headers = {'Content-Type': 'application/json'}
     }

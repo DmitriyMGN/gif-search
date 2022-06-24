@@ -10,7 +10,7 @@ const tabs = new Tabs (
 tabs.setListeners();
 
 
-const api = new Api ();
+const api = new Api ('https://api.giphy.com/v1/gifs');
 
 // Promise.all([api.getRandomGif()])
 //     .then(([randomGif]) => {

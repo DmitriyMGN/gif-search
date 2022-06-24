@@ -36,6 +36,16 @@ api.getRandomGif()
     });
 
 
+// api.getTrends()
+//     .then(res => {
+//         console.log(res.data)
+//     })
+//     .catch(err => {
+//         console.log(err)
+//         alert(`${err}, Что-то пошло не так, попробуйте обновить страницу`)
+//     });
+
+
 
 buttonRandom.addEventListener('click', () => {
     buttonRandom.textContent = 'One moment...';

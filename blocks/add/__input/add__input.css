@@ -1,15 +1,16 @@
 .add__input {
     visibility: hidden;
+    font-size: 75%;
 }
 
 
 
 .add__input::before {
-    content: 'Add your .gif';
+    content: 'choose .gif';
     visibility: visible;
     position: absolute;
     padding: 5px 0 0;
-    width: 480px;
+    width: 200px;
     height: 37px;
     background: #F5F5F5;
     border: 2px solid black;

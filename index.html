@@ -6,6 +6,7 @@
   <meta name="description" content="HTML, CSS, JS">
   <meta name="author" content="Мысягин Дмитрий">
   <link href="./pages/index.css" rel="stylesheet">
+  <link rel="icon" href="./images/search.png" type="image/png">
   <title>gif search</title>
 </head>
 <body class="page">
@@ -66,29 +67,22 @@
 
       <div id="random-gif" class="tab-content">
         <div class="random">
-          <button class="button button_type_random-gif">Get some new</p></button>
+          <!-- <input class="search__input" type="text" placeholder="write tags (if you wish)"> -->
+          <button class="button button_type_random-gif">Get another random gif</p></button>
         </div>
-        <ul class="gifs">
-          <li class="gifs__item"></li>
-          <li class="gifs__item"></li>
-          <li class="gifs__item"></li>
-          <li class="gifs__item"></li>
-          <li class="gifs__item"></li>
-          <li class="gifs__item"></li>
-          <li class="gifs__item"></li>
-          <li class="gifs__item"></li>
-          <li class="gifs__item"></li>
-          <li class="gifs__item"></li>
-          <li class="gifs__item"></li>
-          <li class="gifs__item"></li>
+        <ul class="gifs gifs_random">
+          <li class="gifs__item gifs__item_type_random"></li>
         </ul>
       </div>
 
       <div id="add-gif" class="tab-content">
         <div class="add">
           <input class="add__input" type="file">
+          <input class="search__input search__input_type_add" type="text" placeholder="write tags (if you wish)">
           <button class="button button_type_remove"></button>
+          <button class="button button_type_add">Add</button>
         </div>
+        
         <ul class="gifs">
           <li class="gifs__item"></li>
           <li class="gifs__item"></li>

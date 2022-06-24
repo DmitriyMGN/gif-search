@@ -27,11 +27,9 @@ const api = new Api ({
 
 api.getRandomGif()
     .then((res) => {
-        console.log(res.data.images.original);
         randomGif.setGif(res)
     })
     .catch(err => {
-        console.log(err)
         alert(`${err}, Что-то пошло не так, попробуйте обновить страницу`)
     });
 
@@ -51,7 +49,6 @@ buttonRandom.addEventListener('click', () => {
     buttonRandom.textContent = 'One moment...';
     api.getRandomGif()
         .then((res) => {
-            console.log(res.data.images.original);
             randomGif.setGif(res);
             
         })

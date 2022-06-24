@@ -1,7 +1,6 @@
 export default class RandomGif {
     constructor({ itemSelector }){   
         this._element = document.querySelector(itemSelector);
-        console.log(this._element)
     }
 
     setGif(res) {

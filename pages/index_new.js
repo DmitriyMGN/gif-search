@@ -10,17 +10,20 @@ const tabs = new Tabs (
 tabs.setListeners();
 
 
-const api = new Api ({
-    baseUrl: 'https://api.giphy.com/v1/gifs',
-    headers: {
-      authorization: 'LgKQAIWNj0vz4nfwGHULAscH7a9nyP5R',
-      'Content-Type': 'application/json'
-    }
-});
+const api = new Api ();
 
-Promise.all([api.getRandomGif()])
-    .then(([randomGif]) => {
-        console.log(randomGif)
+// Promise.all([api.getRandomGif()])
+//     .then(([randomGif]) => {
+//         console.log(randomGif)
+//     })
+    // .catch(err => {
+    //     console.log(err)
+    //     alert(`${err}, Что-то пошло не так, попробуйте обновить страницу`)
+    // });
+
+api.getTrends()
+    .then(res => {
+        console.log(res.data)
     })
     .catch(err => {
         console.log(err)

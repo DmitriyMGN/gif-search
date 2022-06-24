@@ -9,6 +9,10 @@
 
 @import url(../blocks/navigation/navigation.css);
 @import url(../blocks/navigation/__link/navigation__link.css);
+@import url(../blocks/navigation/__link_active/navigation__link_active.css);
+
+@import url(../blocks/tab-content/tab-content.css);
+@import url(../blocks/tab-content/_active/tab-content_active.css);
 
 @import url(../blocks/search/search.css);
 @import url(../blocks/search/__input/search__input.css);

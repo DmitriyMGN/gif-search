@@ -3,7 +3,6 @@ export default class Api {
         this._baseUrl = baseUrl;
         this._apiKey = key;
         this._headers = headers;
-        console.log(this._apiKey)
     }
 
     _checkResponse(res) {

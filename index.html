@@ -12,32 +12,53 @@
   <header class="header">
     <h1 class="header__title">Be Animated</h1>
     <nav class="navigation">
-      <a href="" class="navigation__link">Search</a>
-      <a href="" class="navigation__link">Trends</a>
-      <a href="" class="navigation__link">Random gif</a>
-      <a href="" class="navigation__link">Add new</a>
+      <a href="" class="navigation__link" id="search-gif">Search</a>
+      <a href="" class="navigation__link" id="trends">Trends</a>
+      <a href="" class="navigation__link" id="random-gif">Random gif</a>
+      <a href="" class="navigation__link" id="add-gif">Add new</a>
     </nav>
   </header>
   <main class="content">
-    <div class="search">
-      <input class="search__input" type="text" placeholder="Search">
-      <button class="button button_type_remove"></button>
-      <button class="button button_type_search"></button>
+    <div class="tabs-content">
+      <div id="search-gif" class="search-gif tab-content tab-content_active">
+        <div class="search">
+          <input class="search__input" type="text" placeholder="Search">
+          <button class="button button_type_remove"></button>
+          <button class="button button_type_search"></button>
+        </div>
+        <ul class="gifs">
+          <li class="gifs__item"></li>
+          <li class="gifs__item"></li>
+          <li class="gifs__item"></li>
+          <li class="gifs__item"></li>
+          <li class="gifs__item"></li>
+          <li class="gifs__item"></li>
+          <li class="gifs__item"></li>
+          <li class="gifs__item"></li>
+          <li class="gifs__item"></li>
+          <li class="gifs__item"></li>
+          <li class="gifs__item"></li>
+          <li class="gifs__item"></li>
+        </ul>
+      </div>
+
+      <div id="trends" class="tab-content">
+        содержимое вкладки trends (удалить этот текст потом из html)
+      </div>
+
+      <div id="random-gif" class="tab-content">
+        содержимое вкладки random-gif (удалить этот текст потом из html)
+      </div>
+
+      <div id="add-gif" class="tab-content">
+        содержимое вкладки add-gif (удалить этот текст потом из html)
+      </div>
     </div>
-    <ul class="gifs">
-      <li class="gifs__item"></li>
-      <li class="gifs__item"></li>
-      <li class="gifs__item"></li>
-      <li class="gifs__item"></li>
-      <li class="gifs__item"></li>
-      <li class="gifs__item"></li>
-      <li class="gifs__item"></li>
-      <li class="gifs__item"></li>
-      <li class="gifs__item"></li>
-      <li class="gifs__item"></li>
-      <li class="gifs__item"></li>
-      <li class="gifs__item"></li>
-    </ul>
+
   </main>
+
+  
+  <script src="/components/Tabs.js" type="module"></script>
+  <script src="/pages/index_new.js" type="module"></script>
 </body>
 </html>

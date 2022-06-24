@@ -1,5 +1,8 @@
 import Tabs from '../components/Tabs.js';
 import Api from '../components/Api.js';
+import RandomGif from '../components/RandomGif.js';
+
+const buttonRandom = document.querySelector('.button_type_random-gif');
 
 const tabs = new Tabs (
     '.navigation',
@@ -10,19 +13,40 @@ const tabs = new Tabs (
 tabs.setListeners();
 
 
-// const api = new Api ({
-//     baseUrl: 'https://api.giphy.com/v1/gifs',
-//     headers: {
-//       authorization: 'LgKQAIWNj0vz4nfwGHULAscH7a9nyP5R',
-//       'Content-Type': 'application/json'
-//     }
-// });
+const randomGif = new RandomGif ({
+    itemSelector: '.gifs__item_type_random'
+});
 
-// Promise.all([api.getRandomGif()])
-//     .then(([randomGif]) => {
-//         console.log(randomGif)
-//     })
-//     .catch(err => {
-//         console.log(err)
-//         alert(`${err}, Что-то пошло не так, попробуйте обновить страницу`)
-//     });
+const api = new Api ({
+    baseUrl: 'https://api.giphy.com/v1/gifs',
+    key: 'LgKQAIWNj0vz4nfwGHULAscH7a9nyP5R',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+});
+
+api.getRandomGif()
+    .then((res) => {
+        console.log(res.data.images.original);
+        randomGif.setGif(res)
+    })
+    .catch(err => {
+        console.log(err)
+        alert(`${err}, Что-то пошло не так, попробуйте обновить страницу`)
+    });
+
+
+
+buttonRandom.addEventListener('click', () => {
+    buttonRandom.textContent = 'One moment...';
+    api.getRandomGif()
+        .then((res) => {
+            console.log(res.data.images.original);
+            randomGif.setGif(res);
+            
+        })
+        .catch(err => {alert(`${err}, Что-то пошло не так, попробуйте обновить страницу`)})
+        .finally(() => {
+            buttonRandom.textContent = 'Get another random gif';
+        })
+})

@@ -1,8 +1,9 @@
 export default class Api {
-    constructor({ baseUrl, headers }){   
+    constructor({ baseUrl, key, headers }){   
         this._baseUrl = baseUrl;
+        this._apiKey = key;
         this._headers = headers;
-        
+        console.log(this._apiKey)
     }
 
     _getResponseData(res) {
@@ -13,7 +14,7 @@ export default class Api {
     }
 
     getRandomGif(){
-        return fetch(`${this._baseUrl}/random`, {
+        return fetch(`${this._baseUrl}/random?api_key=${this._apiKey}`, {
             headers: this._headers
             })
             .then(res => this._getResponseData(res))

@@ -28,7 +28,7 @@
 
 @import url(../blocks/gifs/gifs.css);
 @import url(../blocks/gifs/__item/gifs__item.css);
-@import url(../blocks/gifs/_random/gifs_random.css);
+@import url(../blocks/gifs/_type/gifs_type_random.css);
 @import url(../blocks/gifs/__item/_type/gifs__item_type_random.css);
 
 @import url(../blocks/random/random.css);

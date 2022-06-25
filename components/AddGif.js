@@ -1,7 +1,7 @@
 export default class AddGif {
-  constructor({containerId, renderer}){   
+  constructor(containerSelector, renderer){   
+      this._containerElement = document.querySelector(containerSelector);
       this._renderer = renderer;
-      this._containerElement = document.querySelector(containerId);
   }
 
   add(gif) {

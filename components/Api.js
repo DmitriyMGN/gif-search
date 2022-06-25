@@ -13,7 +13,7 @@ export default class Api {
       }
 
     getTrends() {
-        return fetch(`${this._baseUrl}/trending?api_key=${this._apiKey}`, {
+        return fetch(`${this._baseUrl}/trending?api_key=${this._apiKey}&limit=12`, {
           headers: this._headers
         })
         .then(this._checkResponse);

@@ -14,24 +14,23 @@ const tabs = new Tabs (
 );
 tabs.setListeners();
 
-function createGif(url) {
-  generateGif.generate(url)
-}
 
 const generateGif = new GenerateGif({
     templateSelector: '.template',
     gifsListSelector: '.gifs',
-    gifsItemSelector: '.gif'
+    gifsItemSelector: '.gifs__item'
 })
 
-const addGif = new AddGif({
-    containerId: '#trends',
-    renderer: (data) => {
-      const gif = createGif(data.url);
+const addGif = new AddGif(
+    '.trends',
+    (data) => {
+      const gif = createGif(data.images.original.url);
       addGif.add(gif);
-    }
+    })
 
-})
+function createGif(url) {
+    return generateGif.generate(url)
+  }
 
 const randomGif = new RandomGif ({
     itemSelector: '.gifs__item_type_random'
@@ -56,9 +55,8 @@ api.getRandomGif()
 
 api.getTrends()
     .then(res => {
+        console.log(res)
         addGif.renderItems(res.data)
-        console.log(res.data)
-
     })
     .catch(err => {
         console.log(err)

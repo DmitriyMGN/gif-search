@@ -9,7 +9,7 @@ export default class GenerateGif {
     const gif = document
       .querySelector(this._templateSelector)
       .content
-      .querySelector('.gif')
+      .querySelector('.gifs__item')
       .cloneNode(true);
 
     return gif;
@@ -17,6 +17,7 @@ export default class GenerateGif {
 
   generate(url) {
     this._gif = this._getTemplate()
-    return this._gif.src = url;
+    this._gif.src = url;
+    return this._gif
   }
 }

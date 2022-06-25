@@ -9,7 +9,7 @@ export default class Api {
         if (res.ok) {
           return res.json();
         }
-        return Promise.reject(`Ошибка: ${res.status}`);
+        return Promise.reject(res);
       }
 
     getTrends() {
@@ -35,15 +35,17 @@ export default class Api {
     }
 
     uploadGif(){
-      return fetch(`https://upload.giphy.com/v1/gifs`, {
-        method: 'POST',
-        headers: this._headers,
+      return fetch(`https://upload.giphy.com/v1/gifs?api_key=${this._apiKey}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
         body: JSON.stringify({
-            api_key: this._apiKey,
-            source_image_url: 'https://i.gifer.com/pmw.mp4'
+            "source_image_url": "https://i.gifer.com/pmw.mp44"
           })
         })
         .then(res => this._checkResponse(res))
+        
     }
 
 }

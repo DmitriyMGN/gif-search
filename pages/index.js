@@ -72,14 +72,15 @@ api.getTrends()
     alert(`${err}, Что-то пошло не так, попробуйте обновить страницу`)
   });
 
-buttonSearch.addEventListener('click', (e) => {
-  e.preventDefault();
+buttonSearch.addEventListener('click', () => {
+  if(inputSearch.value == String) {
+    e.preventDefault()
+  }
   searchStatus.classList.add('search__status_active')
   searchStatus.textContent = 'Please wait...'
   api.getSearch(inputSearch.value)
     .then((res) => {
       if (res.data.length === 0) {
-        console.log('~~~~~~')
         searchStatus.textContent = 'Sorry, no gifs with your name...'
       } else {
         searchStatus.classList.remove('search__status_active')

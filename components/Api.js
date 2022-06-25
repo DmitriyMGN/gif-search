@@ -28,10 +28,22 @@ export default class Api {
     
 
     getRandomGif(){
-        return fetch(`${this._baseUrl}/random?api_key=${this._apiKey}`, {
-            headers: this._headers
-            })
-            .then(res => this._checkResponse(res))
+      return fetch(`${this._baseUrl}/random?api_key=${this._apiKey}`, {
+        headers: this._headers
+        })
+        .then(res => this._checkResponse(res))
+    }
+
+    uploadGif(){
+      return fetch(`https://upload.giphy.com/v1/gifs`, {
+        method: 'POST',
+        headers: this._headers,
+        body: JSON.stringify({
+            api_key: this._apiKey,
+            source_image_url: 'https://i.gifer.com/pmw.mp4'
+          })
+        })
+        .then(res => this._checkResponse(res))
     }
 
 }

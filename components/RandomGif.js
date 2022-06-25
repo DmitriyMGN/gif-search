@@ -3,7 +3,15 @@ export default class RandomGif {
         this._element = document.querySelector(itemSelector);
     }
 
+    getGif() {
+
+    }
+
     setGif(res) {
         this._element.src = res.data.images.original.url;
+    }
+
+    removeGif() {
+
     }
 }

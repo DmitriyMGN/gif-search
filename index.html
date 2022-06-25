@@ -21,7 +21,7 @@
   </header>
   <main class="content">
     <div class="tabs-content">
-      <div id="search-gif" class="search-gif tab-content tab-content_active">
+      <div id="search-gif" class="tab-content tab-content_active">
         <div class="search">
           <form class="search__form">
             <input class="search__input" type="text" placeholder="Search">
@@ -44,18 +44,17 @@
         <div class="random">
           <button class="button button_type_random-gif">Get another random gif</button>
         </div>
-        <div class="gifs gifs_random">
-          
+        <div class="gifs gifs_type_random">          
         </div>
       </div>
 
       <div id="add-gif" class="tab-content">
-        <div class="add">
+        <form class="add">
           <input class="add__input" type="file">
-          <input class="search__input search__input_type_add" type="text" placeholder="write tags (if you wish)">
+          <input class="search__input search__input_type_add" type="text" placeholder="tags (if you wish)">
           <button class="button button_type_remove"></button>
-          <button class="button button_type_add">Add</button>
-        </div>
+          <button class="button button_type_add" type="submit">Add</button>
+        </form>
       </div>
     </div>
       
@@ -67,8 +66,6 @@
     </div>
   </template>
 
-  
-  <!-- <script src="/components/Tabs.js" type="module"></script> -->
   <script src="/pages/index.js" type="module"></script>
 </body>
 </html>

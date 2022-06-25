@@ -51,11 +51,11 @@ const api = new Api({
 });
 
 
-api.uploadGif()
+// api.uploadGif()
 
 
 const randomGif2 = new AddGif(
-  '.gifs_random'
+  '.gifs_type_random'
 )
 
 
@@ -88,6 +88,7 @@ buttonRandom.addEventListener('click', () => {
 const buttonAddMyGif = document.querySelector('.button_type_add');
 const tagsAddMyGif = document.querySelector('.search__input_type_add');
 const fileAddMyGif = document.querySelector('.add__input');
+const formToAddGif = document.querySelector('.add');
 
 const addMyGif = new AddGif(
   '.add',
@@ -96,25 +97,33 @@ const addMyGif = new AddGif(
     searchAddGif.add(gif);
 })
 
-buttonAddMyGif.addEventListener('click', (e) => {
+formToAddGif.addEventListener('submit', (e) => {
   e.preventDefault();
   // buttonAddMyGif.classList.add('loader')
   console.log(tagsAddMyGif.value)
   console.log(fileAddMyGif.value)
-
-  // searchStatus.textContent = 'Please wait...'
-  api.uploadGif(tagsAddMyGif.value, fileAddMyGif.value)
-    .then((res) => {
-      console.log(res)
-      // addMyGif.renderItems(res.data)
-    })
-    .catch(err => {
-      console.log(err)
-      // alert(`${err}, Что-то пошло не так, попробуйте обновить страницу`)
-    })
+  
+  // api.uploadGif(tagsAddMyGif.value, fileAddMyGif.value)
+  //   .then((res) => {
+  //     console.log(res)
+  //     // addMyGif.renderItems(res.data)
+        // formToAddGif.reset()
+  //   })
+  //   .catch(err => {
+  //     console.log(err)
+  //     alert(`${err}, Что-то пошло не так, попробуйте обновить страницу`)
+  //   })
 })
 
 
+const buttonClearForm = document.querySelectorAll('.button_type_remove');
+
+buttonClearForm.forEach(item => {
+  item.addEventListener('click', (e) => {
+    e.preventDefault();
+    item.parentElement.reset();
+  })
+})
 
 
 

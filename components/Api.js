@@ -13,14 +13,14 @@ export default class Api {
       }
 
     getTrends() {
-        return fetch(`${this._baseUrl}/trending?api_key=${this._apiKey}&limit=12`, {
+        return fetch(`${this._baseUrl}/trending?api_key=${this._apiKey}&limit=32`, {
           headers: this._headers
         })
         .then(this._checkResponse);
     }
 
     getSearch(search) {
-      return fetch(`${this._baseUrl}/search?api_key=${this._apiKey}&q=${search}&limit=30`, {
+      return fetch(`${this._baseUrl}/search?api_key=${this._apiKey}&q=${search}&limit=32`, {
         headers: this._headers
       })
       .then(this._checkResponse);

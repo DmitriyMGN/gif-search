@@ -19,3 +19,19 @@
   border: 2px solid #F5F5F5;
 }
 
+@media screen and (max-width:700px) {
+  .search__input {
+   width:300px;
+   font-size: 20px;
+  }
+  .search__input::placeholder {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width:500px) {
+  .search__input {
+   width:150px;
+  }
+}
+

@@ -25,14 +25,14 @@ const generateGif = new GenerateGif({
 })
 
 const trendsAddGif = new AddGif(
-  '.trends',
+  '.gifs_type_trends',
   (data) => {
     const gif = createGif(data.images.original.url);
     trendsAddGif.add(gif);
   })
 
 const searchAddGif = new AddGif(
-  '.search-gif',
+  '.gifs_type_search',
   (data) => {
     const gif = createGif(data.images.original.url);
     searchAddGif.add(gif);

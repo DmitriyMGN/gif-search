@@ -19,6 +19,14 @@ export default class Api {
         .then(this._checkResponse);
     }
 
+    getSearch(search) {
+      return fetch(`${this._baseUrl}/search?api_key=${this._apiKey}&q=${search}&limit=30`, {
+        headers: this._headers
+      })
+      .then(this._checkResponse);
+  }
+    
+
     getRandomGif(){
         return fetch(`${this._baseUrl}/random?api_key=${this._apiKey}`, {
             headers: this._headers

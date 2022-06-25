@@ -5,75 +5,103 @@ import GenerateGif from '../components/GenerateGif.js'
 import AddGif from '../components/AddGif.js';
 
 const buttonRandom = document.querySelector('.button_type_random-gif');
+const buttonSearch = document.querySelector('.button_type_search');
+const inputSearch = document.querySelector('.search__input');
+const searchStatus = document.querySelector('.search__status');
+const searchForm = document.querySelector('.search__form');
 
-const tabs = new Tabs (
-    '.navigation',
-    '.tabs-content',
-    'navigation__link_active',
-    'tab-content_active'
+const tabs = new Tabs(
+  '.navigation',
+  '.tabs-content',
+  'navigation__link_active',
+  'tab-content_active'
 );
 tabs.setListeners();
 
-
 const generateGif = new GenerateGif({
-    templateSelector: '.template',
-    gifsListSelector: '.gifs',
-    gifsItemSelector: '.gifs__item'
+  templateSelector: '.template',
+  gifsListSelector: '.gifs',
+  gifsItemSelector: '.gifs__item'
 })
 
-const addGif = new AddGif(
-    '.trends',
-    (data) => {
-      const gif = createGif(data.images.original.url);
-      addGif.add(gif);
-    })
+const trendsAddGif = new AddGif(
+  '.trends',
+  (data) => {
+    const gif = createGif(data.images.original.url);
+    trendsAddGif.add(gif);
+  })
+
+const searchAddGif = new AddGif(
+  '.search-gif',
+  (data) => {
+    const gif = createGif(data.images.original.url);
+    searchAddGif.add(gif);
+  })
 
 function createGif(url) {
-    return generateGif.generate(url)
-  }
+  return generateGif.generate(url)
+}
 
-const randomGif = new RandomGif ({
-    itemSelector: '.gifs__item_type_random'
+const randomGif = new RandomGif({
+  itemSelector: '.gifs__item_type_random'
 });
 
-const api = new Api ({
-    baseUrl: 'https://api.giphy.com/v1/gifs',
-    key: 'LgKQAIWNj0vz4nfwGHULAscH7a9nyP5R',
-    headers: {
-      'Content-Type': 'application/json'
-    }
+const api = new Api({
+  baseUrl: 'https://api.giphy.com/v1/gifs',
+  key: 'LgKQAIWNj0vz4nfwGHULAscH7a9nyP5R',
+  headers: {
+    'Content-Type': 'application/json'
+  }
 });
 
 api.getRandomGif()
-    .then((res) => {
-        randomGif.setGif(res)
-    })
-    .catch(err => {
-        alert(`${err}, Что-то пошло не так, попробуйте обновить страницу`)
-    });
+  .then((res) => {
+    randomGif.setGif(res)
+  })
+  .catch(err => {
+    alert(`${err}, Что-то пошло не так, попробуйте обновить страницу`)
+  });
 
 
 api.getTrends()
-    .then(res => {
-        console.log(res)
-        addGif.renderItems(res.data)
+  .then(res => {
+    trendsAddGif.renderItems(res.data)
+  })
+  .catch(err => {
+    console.log(err)
+    alert(`${err}, Что-то пошло не так, попробуйте обновить страницу`)
+  });
+
+buttonSearch.addEventListener('click', (e) => {
+  e.preventDefault();
+  searchStatus.classList.add('search__status_active')
+  searchStatus.textContent = 'Please wait...'
+  api.getSearch(inputSearch.value)
+    .then((res) => {
+      if (res.data.length === 0) {
+        console.log('~~~~~~')
+        searchStatus.textContent = 'Sorry, no gifs with your name...'
+      } else {
+        searchStatus.classList.remove('search__status_active')
+        searchAddGif.renderItems(res.data)
+      }
     })
     .catch(err => {
-        console.log(err)
-        alert(`${err}, Что-то пошло не так, попробуйте обновить страницу`)
-    });
-
-
+      alert(`${err}, Что-то пошло не так, попробуйте обновить страницу`)
+    })
+})
 
 buttonRandom.addEventListener('click', () => {
-    buttonRandom.textContent = 'One moment...';
-    api.getRandomGif()
-        .then((res) => {
-            randomGif.setGif(res);
-            
-        })
-        .catch(err => {alert(`${err}, Что-то пошло не так, попробуйте обновить страницу`)})
-        .finally(() => {
-            buttonRandom.textContent = 'Get another random gif';
-        })
+  buttonRandom.textContent = 'One moment...';
+  api.getRandomGif()
+    .then((res) => {
+      randomGif.setGif(res);
+
+    })
+    .catch(err => {
+      alert(`${err}, Что-то пошло не так, попробуйте обновить страницу`)
+    })
+    .finally(() => {
+      buttonRandom.textContent = 'Get another random gif';
+    })
 })

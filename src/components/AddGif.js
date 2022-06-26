@@ -15,6 +15,10 @@ export default class AddGif {
   }
 
   replaceGif(newGif) {
-    this._containerElement.replaceChild(newGif, this._containerElement.firstChild)
+    // this._containerElement.replaceChild(newGif, this._containerElement.firstChild)
+    if(this._containerElement.firstChild){
+      this._containerElement.firstChild.replaceWith(newGif)
+    } this._containerElement.append(newGif)
+    
   }
 }

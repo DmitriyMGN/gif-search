@@ -49,11 +49,15 @@
 
       <div id="add-gif" class="tab-content">
         <form class="add">
-          <input class="add__input" type="file">
+          <div>
+            <input class="add__input" type="file" accept="image/gif">
+            <p class="add__input_uploaded"></p>
+          </div>
           <input class="search__input search__input_type_add" type="text" placeholder="tags (if you wish)">
-          <button class="button button_type_remove"></button>
+          <button class="button button_type_remove" type="reset"></button>
           <button class="button button_type_add" type="submit">Add</button>
         </form>
+        <div class="preview"></div>
       </div>
     </div>
       

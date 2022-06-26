@@ -35,5 +35,6 @@
 
 @import url(../blocks/add/add.css);
 @import url(../blocks/add/__input/add__input.css);
+@import url(../blocks/add/__input/_uploaded/add__input_uploaded.css);
 
 @import url(../blocks/loader/loader.css);

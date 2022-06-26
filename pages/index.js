@@ -89,6 +89,7 @@ buttonRandom.addEventListener('click', () => {
 const buttonAddMyGif = document.querySelector('.button_type_add');
 const tagsAddMyGif = document.querySelector('.search__input_type_add');
 const fileAddMyGif = document.querySelector('.add__input');
+let fileAddMyGifText = document.querySelector('.add__input_uploaded');
 const formToAddGif = document.querySelector('.add');
 
 const addMyGif = new AddGif(
@@ -98,33 +99,87 @@ const addMyGif = new AddGif(
     searchAddGif.add(gif);
 })
 
+fileAddMyGif.addEventListener("change", handleFiles3, false);
+function handleFiles() {
+  const fileList = this.files[0].name;
+  fileAddMyGifText.textContent = `${this.files[0].name}`;
+}
+
+
+function handleFiles3(files) {
+    let file = this.files[0];
+    let img = document.createElement("img");
+    img.classList.add("obj");
+    img.file = file;
+    document.querySelector('.preview').appendChild(img);
+
+    console.log(file)
+
+    let reader = new FileReader();
+    reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
+    reader.readAsDataURL(file);
+
+    // let fileUrl = reader.readAsDataURL(file);
+    
+    
+    
+    const preview2 = document.querySelector('img');
+    const file2 = document.querySelector('input[type=file]').files[0];
+    const reader2 = new FileReader();
+
+    reader2.addEventListener("load", function () {
+      // convert image file to base64 string
+      preview2.src = reader2.result;
+    }, false);
+
+    if (file2) {
+      console.log(reader2.result);
+  }
+}
+
+
+
 formToAddGif.addEventListener('submit', (e) => {
   e.preventDefault();
   // buttonAddMyGif.classList.add('loader')
   console.log(tagsAddMyGif.value)
   console.log(fileAddMyGif.value)
+
+  // const fileList2 = fileAddMyGif.files[0];
+  // const fileList2 = readFile(fileAddMyGif);
+  // console.log('в сабмите', toString(fileList2))
+  let reader = new FileReader();
+    // reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
+    // reader.readAsDataURL(file);
+
+  // reader.readAsText(fileAddMyGif.files[0])
+
+  console.log(document.querySelector('.obj'))
   
-  // api.uploadGif(tagsAddMyGif.value, fileAddMyGif.value)
-  //   .then((res) => {
-  //     console.log(res)
-  //     // addMyGif.renderItems(res.data)
-        // formToAddGif.reset()
-  //   })
-  //   .catch(err => {
-  //     console.log(err)
-  //     alert(`${err}, Что-то пошло не так, попробуйте обновить страницу`)
-  //   })
+  api.uploadGif(tagsAddMyGif.value, document.querySelector('.obj').src)
+    .then((res) => {
+      console.log(res)
+      // addMyGif.renderItems(res.data)
+        
+    })
+    .catch(err => {
+      console.log(err)
+      alert(`${err}, Что-то пошло не так, попробуйте обновить страницу`)
+    })
+    .finally(() => {
+      formToAddGif.reset();
+      fileAddMyGifText.textContent = '';
+    })
 })
 
 
-// const buttonClearForm = document.querySelectorAll('.button_type_remove');
+const buttonClearForm = formToAddGif.querySelector('.button_type_remove');
 
-// buttonClearForm.forEach(item => {
-//   item.addEventListener('click', (e) => {
-//     e.preventDefault();
-//     item.parentElement.reset();
-//   })
-// })
+buttonClearForm.addEventListener('click', (e) => {
+  e.preventDefault();
+  buttonClearForm.parentElement.reset();
+  fileAddMyGifText.textContent = '';
+})
 
 
 

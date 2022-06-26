@@ -98,42 +98,60 @@ const addMyGif = new AddGif(
     searchAddGif.add(gif);
 })
 
-fileAddMyGif.addEventListener("change", handleFiles3, false);
-function handleFiles() {
+
+
+const uploadedGif = new AddGif(
+  '.gifs_type_uploaded'
+)
+
+fileAddMyGif.addEventListener("change", handleFiles, false);
+function handleFiles(files) {
   const fileList = this.files[0].name;
   fileAddMyGifText.textContent = `${this.files[0].name}`;
+
+  let file = fileAddMyGif.files[0];
+  let img = createGif('');
+  img.classList.add("gifs__item");
+  img.classList.add("gifs__item_type_uploaded");
+  img.file = file;
+  document.querySelector('.gifs_type_uploaded').appendChild(img);
+  
+  let reader = new FileReader();
+  reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
+  reader.readAsDataURL(file);
 }
 
 
+
+
 function handleFiles3(files) {
-    let file = this.files[0];
-    let img = document.createElement("img");
-    img.classList.add("obj");
-    img.file = file;
-    document.querySelector('.preview').appendChild(img);
-
-    console.log(file)
-
-    let reader = new FileReader();
-    reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
-    reader.readAsDataURL(file);
-
-    // let fileUrl = reader.readAsDataURL(file);
+    // let file = this.files[0];
+    // let img = document.createElement("img");
+    // img.classList.add("gifs__item");
+    // img.classList.add("gifs__item_type_uploaded");
+    // img.file = file;
+    // document.querySelector('.gifs_type_uploaded').appendChild(img);
     
-    
-    
-    const preview2 = document.querySelector('img');
-    const file2 = document.querySelector('input[type=file]').files[0];
-    const reader2 = new FileReader();
 
-    reader2.addEventListener("load", function () {
-      // convert image file to base64 string
-      preview2.src = reader2.result;
-    }, false);
+    // console.log(file)
 
-    if (file2) {
-      console.log(reader2.result);
-  }
+    // let reader = new FileReader();
+    // reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
+    // reader.readAsDataURL(file);
+ 
+
+    // let file = this.files[0];
+    // let img = createGif();
+    // img.classList.add("gifs__item");
+    // img.classList.add("gifs__item_type_uploaded");
+    // img.file = file;
+    // uploadedGif.replaceGif(img)
+    
+    // let reader = new FileReader();
+    // reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
+    // reader.readAsDataURL(file);
+
+    
 }
 
 
@@ -147,15 +165,32 @@ formToAddGif.addEventListener('submit', (e) => {
   // const fileList2 = fileAddMyGif.files[0];
   // const fileList2 = readFile(fileAddMyGif);
   // console.log('в сабмите', toString(fileList2))
-  let reader = new FileReader();
+  // let reader = new FileReader();
     // reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
     // reader.readAsDataURL(file);
 
   // reader.readAsText(fileAddMyGif.files[0])
 
-  console.log(document.querySelector('.obj'))
+
+
+
+
+  // let file = fileAddMyGif.files[0];
+  // let img = createGif();
+  // img.classList.add("gifs__item");
+  // img.classList.add("gifs__item_type_uploaded");
+  // img.file = file;
+  // uploadedGif.replaceGif(img)
   
-  api.uploadGif(tagsAddMyGif.value, document.querySelector('.obj').src)
+  // let reader = new FileReader();
+  // reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
+  // reader.readAsDataURL(file);
+
+
+
+  // console.log(document.querySelector('.gifs__item_type_uploaded'))
+  
+  api.uploadGif(tagsAddMyGif.value, document.querySelector('.gifs__item_type_uploaded').src)
     .then((res) => {
       console.log(res)
       // addMyGif.renderItems(res.data)

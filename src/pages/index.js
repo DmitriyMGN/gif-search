@@ -12,6 +12,22 @@ const searchStatus = document.querySelector('.search__status');
 const searchForm = document.querySelector('.search__form');
 const gifsTypeSearch = document.querySelector('.gifs_type_search');
 
+
+const buttonAddMyGif = document.querySelector('.button_type_add');
+const tagsAddMyGif = document.querySelector('.search__input_type_add');
+const fileAddMyGif = document.querySelector('.search__input_type_add-link');
+const formToAddGif = document.querySelector('.add');
+const buttonClearForm = formToAddGif.querySelector('.button_type_remove');
+
+const api = new Api({
+  baseUrl: 'https://api.giphy.com/v1/gifs',
+  key: 'LgKQAIWNj0vz4nfwGHULAscH7a9nyP5R',
+  headers: {
+    'Content-Type': 'application/json'
+  }
+});
+
+
 const tabs = new Tabs(
   '.navigation',
   '.tabs-content',
@@ -33,6 +49,8 @@ const trendsAddGif = new AddGif(
     trendsAddGif.add(gif);
   })
 
+
+
 const searchAddGif = new AddGif(
   '.gifs_type_search',
   (data) => {
@@ -40,23 +58,23 @@ const searchAddGif = new AddGif(
     searchAddGif.add(gif);
   })
 
-function createGif(url) {
-  return generateGif.generate(url)
-}
 
-const api = new Api({
-  baseUrl: 'https://api.giphy.com/v1/gifs',
-  key: 'LgKQAIWNj0vz4nfwGHULAscH7a9nyP5R',
-  headers: {
-    'Content-Type': 'application/json'
-  }
+const randomGif = new AddGif(
+  '.gifs_type_random'
+)
+
+api.getTrends()
+  .then(res => {
+    trendsAddGif.renderItems(res.data)
+  })
+  .catch(err => {
+    alert(`${err}, Что-то пошло не так, попробуйте обновить страницу`)
 });
 
 
-
-const randomGif2 = new AddGif(
-  '.gifs_type_random'
-)
+function createGif(url) {
+  return generateGif.generate(url)
+}
 
 
 function setRandomGif(){
@@ -64,7 +82,7 @@ function setRandomGif(){
   .then(res => {
     const newGif = createGif(res.data.images.original.url);
     newGif.classList.add('gifs__item_type_random');
-    randomGif2.replaceGif(newGif);
+    randomGif.replaceGif(newGif);
   })
   .catch(err => {
     alert(`${err}, Что-то пошло не так, попробуйте обновить страницу`)
@@ -82,150 +100,42 @@ buttonRandom.addEventListener('click', () => {
 })
 
 
-
-
-
-const buttonAddMyGif = document.querySelector('.button_type_add');
-const tagsAddMyGif = document.querySelector('.search__input_type_add');
-const fileAddMyGif = document.querySelector('.add__input');
-let fileAddMyGifText = document.querySelector('.add__input_uploaded');
-const formToAddGif = document.querySelector('.add');
-
-const addMyGif = new AddGif(
-  '.add',
-  (data) => {
-    const gif = createGif(data.images.original.url);
-    searchAddGif.add(gif);
-})
-
-
-
 const uploadedGif = new AddGif(
   '.gifs_type_uploaded'
 )
 
-fileAddMyGif.addEventListener("change", handleFiles, false);
-function handleFiles(files) {
-  const fileList = this.files[0].name;
-  fileAddMyGifText.textContent = `${this.files[0].name}`;
-
-  let file = fileAddMyGif.files[0];
-  let img = createGif('');
-  img.classList.add("gifs__item");
-  img.classList.add("gifs__item_type_uploaded");
-  img.file = file;
-  document.querySelector('.gifs_type_uploaded').appendChild(img);
-  
-  let reader = new FileReader();
-  reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
-  reader.readAsDataURL(file);
-}
-
-
-
-
-function handleFiles3(files) {
-    // let file = this.files[0];
-    // let img = document.createElement("img");
-    // img.classList.add("gifs__item");
-    // img.classList.add("gifs__item_type_uploaded");
-    // img.file = file;
-    // document.querySelector('.gifs_type_uploaded').appendChild(img);
-    
-
-    // console.log(file)
-
-    // let reader = new FileReader();
-    // reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
-    // reader.readAsDataURL(file);
- 
-
-    // let file = this.files[0];
-    // let img = createGif();
-    // img.classList.add("gifs__item");
-    // img.classList.add("gifs__item_type_uploaded");
-    // img.file = file;
-    // uploadedGif.replaceGif(img)
-    
-    // let reader = new FileReader();
-    // reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
-    // reader.readAsDataURL(file);
-
-    
-}
-
-
 
 formToAddGif.addEventListener('submit', (e) => {
   e.preventDefault();
-  // buttonAddMyGif.classList.add('loader')
-  console.log(tagsAddMyGif.value)
-  console.log(fileAddMyGif.value)
-
-  // const fileList2 = fileAddMyGif.files[0];
-  // const fileList2 = readFile(fileAddMyGif);
-  // console.log('в сабмите', toString(fileList2))
-  // let reader = new FileReader();
-    // reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
-    // reader.readAsDataURL(file);
-
-  // reader.readAsText(fileAddMyGif.files[0])
-
-
-
-
-
-  // let file = fileAddMyGif.files[0];
-  // let img = createGif();
-  // img.classList.add("gifs__item");
-  // img.classList.add("gifs__item_type_uploaded");
-  // img.file = file;
-  // uploadedGif.replaceGif(img)
+  buttonAddMyGif.textContent = 'Adding...'
   
-  // let reader = new FileReader();
-  // reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
-  // reader.readAsDataURL(file);
-
-
-
-  // console.log(document.querySelector('.gifs__item_type_uploaded'))
-  
-  api.uploadGif(tagsAddMyGif.value, document.querySelector('.gifs__item_type_uploaded').src)
+  api.uploadGif(tagsAddMyGif.value, fileAddMyGif.value)
     .then((res) => {
-      console.log(res)
-      // addMyGif.renderItems(res.data)
-        
+      return res.data.id
+    })
+    .then((id) => {
+      api.getGifById(id)
+        .then((res) => {          
+          const newGif = createGif(res.data.images.original.url);
+          newGif.classList.add('gifs__item_type_uploaded');
+          uploadedGif.replaceGif(newGif);
+        })
     })
     .catch(err => {
-      console.log(err)
       alert(`${err}, Что-то пошло не так, попробуйте обновить страницу`)
     })
     .finally(() => {
       formToAddGif.reset();
-      fileAddMyGifText.textContent = '';
+      buttonAddMyGif.textContent = 'Add'
     })
 })
 
 
-const buttonClearForm = formToAddGif.querySelector('.button_type_remove');
 
 buttonClearForm.addEventListener('click', (e) => {
   e.preventDefault();
   buttonClearForm.parentElement.reset();
-  fileAddMyGifText.textContent = '';
 })
-
-
-
-
-api.getTrends()
-  .then(res => {
-    trendsAddGif.renderItems(res.data)
-  })
-  .catch(err => {
-    console.log(err)
-    alert(`${err}, Что-то пошло не так, попробуйте обновить страницу`)
-  });
 
 buttonSearch.addEventListener('click', (e) => {
     e.preventDefault()
@@ -251,21 +161,3 @@ buttonSearch.addEventListener('click', (e) => {
         alert(`${err}, Что-то пошло не так, попробуйте обновить страницу`)
       })
   })
-
-
-  // searchStatus.classList.add('search__status_active')
-  // searchStatus.textContent = 'Please wait...'
-  // api.getSearch(inputSearch.value)
-  //   .then((res) => {
-  //     if (res.data.length === 0) {
-  //       searchStatus.textContent = 'Sorry, no gifs with your name...'
-  //     } else {
-  //       searchStatus.classList.remove('search__status_active')
-  //       searchAddGif.renderItems(res.data)
-  //     }
-  //   })
-  //   .catch(err => {
-  //     alert(`${err}, Что-то пошло не так, попробуйте обновить страницу`)
-  //   })
-// })
-

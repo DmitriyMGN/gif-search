@@ -42,10 +42,6 @@ function createGif(url) {
   return generateGif.generate(url)
 }
 
-const randomGif = new RandomGif({
-  itemSelector: '.gifs__item_type_random'
-});
-
 const api = new Api({
   baseUrl: 'https://api.giphy.com/v1/gifs',
   key: 'LgKQAIWNj0vz4nfwGHULAscH7a9nyP5R',
@@ -54,13 +50,82 @@ const api = new Api({
   }
 });
 
-api.getRandomGif()
-  .then((res) => {
-    randomGif.setGif(res)
+
+// api.uploadGif()
+
+
+const randomGif2 = new AddGif(
+  '.gifs_type_random'
+)
+
+
+function setRandomGif(){
+  api.getRandomGif()
+  .then(res => {
+    const newGif = createGif(res.data.images.original.url);
+    newGif.classList.add('gifs__item_type_random');
+    randomGif2.replaceGif(newGif);
   })
   .catch(err => {
     alert(`${err}, Что-то пошло не так, попробуйте обновить страницу`)
-  });
+  })
+  .finally(() => {
+    buttonRandom.textContent = 'Get another random gif';
+  })
+}
+setRandomGif();
+
+
+buttonRandom.addEventListener('click', () => {
+  buttonRandom.textContent = 'One moment...';
+  setRandomGif();
+})
+
+
+
+
+
+const buttonAddMyGif = document.querySelector('.button_type_add');
+const tagsAddMyGif = document.querySelector('.search__input_type_add');
+const fileAddMyGif = document.querySelector('.add__input');
+const formToAddGif = document.querySelector('.add');
+
+const addMyGif = new AddGif(
+  '.add',
+  (data) => {
+    const gif = createGif(data.images.original.url);
+    searchAddGif.add(gif);
+})
+
+formToAddGif.addEventListener('submit', (e) => {
+  e.preventDefault();
+  // buttonAddMyGif.classList.add('loader')
+  console.log(tagsAddMyGif.value)
+  console.log(fileAddMyGif.value)
+  
+  // api.uploadGif(tagsAddMyGif.value, fileAddMyGif.value)
+  //   .then((res) => {
+  //     console.log(res)
+  //     // addMyGif.renderItems(res.data)
+        // formToAddGif.reset()
+  //   })
+  //   .catch(err => {
+  //     console.log(err)
+  //     alert(`${err}, Что-то пошло не так, попробуйте обновить страницу`)
+  //   })
+})
+
+
+const buttonClearForm = document.querySelectorAll('.button_type_remove');
+
+buttonClearForm.forEach(item => {
+  item.addEventListener('click', (e) => {
+    e.preventDefault();
+    item.parentElement.reset();
+  })
+})
+
+
 
 
 api.getTrends()
@@ -109,17 +174,3 @@ buttonSearch.addEventListener('click', (e) => {
   //   })
 // })
 
-buttonRandom.addEventListener('click', () => {
-  buttonRandom.textContent = 'One moment...';
-  api.getRandomGif()
-    .then((res) => {
-      randomGif.setGif(res);
-
-    })
-    .catch(err => {
-      alert(`${err}, Что-то пошло не так, попробуйте обновить страницу`)
-    })
-    .finally(() => {
-      buttonRandom.textContent = 'Get another random gif';
-    })
-})

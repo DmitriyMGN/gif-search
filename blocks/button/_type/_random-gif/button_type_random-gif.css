@@ -5,3 +5,9 @@
     color: black;
     padding: 4px 0;
 }
+
+@media screen and (max-width:505px) {
+    .button_type_random-gif {
+        font-size: 22px;;
+    }
+  }

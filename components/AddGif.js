@@ -14,5 +14,7 @@ export default class AddGif {
     });
   }
 
-
+  replaceGif(newGif) {
+    this._containerElement.replaceChild(newGif, this._containerElement.firstChild)
+  }
 }

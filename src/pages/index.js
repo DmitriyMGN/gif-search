@@ -1,6 +1,7 @@
+import '../pages/index.css';
+
 import Tabs from '../components/Tabs.js';
 import Api from '../components/Api.js';
-import RandomGif from '../components/RandomGif.js';
 import GenerateGif from '../components/GenerateGif.js'
 import AddGif from '../components/AddGif.js';
 
@@ -51,8 +52,6 @@ const api = new Api({
   }
 });
 
-
-// api.uploadGif()
 
 
 const randomGif2 = new AddGif(

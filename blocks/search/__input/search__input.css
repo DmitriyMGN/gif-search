@@ -21,7 +21,7 @@
 
 @media screen and (max-width:700px) {
   .search__input {
-   width:300px;
+   width: 300px;
    font-size: 20px;
   }
   .search__input::placeholder {

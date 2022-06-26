@@ -72,25 +72,42 @@ api.getTrends()
     alert(`${err}, Что-то пошло не так, попробуйте обновить страницу`)
   });
 
-buttonSearch.addEventListener('click', () => {
-  if(inputSearch.value == String) {
+buttonSearch.addEventListener('click', (e) => {
+  // window.location.reload();
     e.preventDefault()
-  }
-  searchStatus.classList.add('search__status_active')
-  searchStatus.textContent = 'Please wait...'
-  api.getSearch(inputSearch.value)
-    .then((res) => {
-      if (res.data.length === 0) {
-        searchStatus.textContent = 'Sorry, no gifs with your name...'
-      } else {
-        searchStatus.classList.remove('search__status_active')
-        searchAddGif.renderItems(res.data)
-      }
-    })
-    .catch(err => {
-      alert(`${err}, Что-то пошло не так, попробуйте обновить страницу`)
-    })
-})
+    searchStatus.classList.add('search__status_active')
+    searchStatus.textContent = 'Please wait...'
+    api.getSearch(inputSearch.value)
+      .then((res) => {
+        if (res.data.length === 0) {
+          searchStatus.textContent = 'Sorry, no gifs with your name...'
+        } else {
+          searchStatus.classList.remove('search__status_active')
+          searchAddGif.renderItems(res.data)
+          inputSearch.value = ''
+        }
+      })
+      .catch(err => {
+        alert(`${err}, Что-то пошло не так, попробуйте обновить страницу`)
+      })
+  })
+
+
+  // searchStatus.classList.add('search__status_active')
+  // searchStatus.textContent = 'Please wait...'
+  // api.getSearch(inputSearch.value)
+  //   .then((res) => {
+  //     if (res.data.length === 0) {
+  //       searchStatus.textContent = 'Sorry, no gifs with your name...'
+  //     } else {
+  //       searchStatus.classList.remove('search__status_active')
+  //       searchAddGif.renderItems(res.data)
+  //     }
+  //   })
+  //   .catch(err => {
+  //     alert(`${err}, Что-то пошло не так, попробуйте обновить страницу`)
+  //   })
+// })
 
 buttonRandom.addEventListener('click', () => {
   buttonRandom.textContent = 'One moment...';

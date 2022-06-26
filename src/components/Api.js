@@ -34,31 +34,38 @@ export default class Api {
         .then(res => this._checkResponse(res))
     }
 
-    getGifById(id){
-      return fetch(`${this._baseUrl}/${id}?api_key=${this._apiKey}`, {
-        headers: this._headers
-        })
-        .then(res => this._checkResponse(res))
-    }
-
-    uploadGif(tags, url){
+    uploadGif(tags, file){
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
-      
       const urlencoded = new URLSearchParams();
-      urlencoded.append("source_image_url", `${url}`);
+      urlencoded.append("file", `${file}`);
       urlencoded.append("tags", `${tags}`);
+      console.log(`${file}`)
 
       const requestOptions = {
         method: 'POST',
         headers: myHeaders,
-        body: urlencoded,
         redirect: 'follow'
       };
 
-      return fetch(`https://upload.giphy.com/v1/gifs?api_key=${this._apiKey}`, requestOptions)
+      fetch(`https://upload.giphy.com/v1/gifs?api_key=${this._apiKey}&file=${file}`, requestOptions)
         .then(res => this._checkResponse(res))
+
+
+        
+      return fetch(`https://upload.giphy.com/v1/gifs?api_key=${this._apiKey}&file=${file}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        // body: JSON.stringify({
+        //     "file": `${file}`,
+        //     // "tags": `${tags}`
+        //   })
+        })
+        .then(res => this._checkResponse(res))
+        
     }
 
 }

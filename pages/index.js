@@ -9,6 +9,7 @@ const buttonSearch = document.querySelector('.button_type_search');
 const inputSearch = document.querySelector('.search__input');
 const searchStatus = document.querySelector('.search__status');
 const searchForm = document.querySelector('.search__form');
+const gifsTypeSearch = document.querySelector('.gifs_type_search');
 
 const tabs = new Tabs(
   '.navigation',
@@ -116,14 +117,14 @@ formToAddGif.addEventListener('submit', (e) => {
 })
 
 
-const buttonClearForm = document.querySelectorAll('.button_type_remove');
+// const buttonClearForm = document.querySelectorAll('.button_type_remove');
 
-buttonClearForm.forEach(item => {
-  item.addEventListener('click', (e) => {
-    e.preventDefault();
-    item.parentElement.reset();
-  })
-})
+// buttonClearForm.forEach(item => {
+//   item.addEventListener('click', (e) => {
+//     e.preventDefault();
+//     item.parentElement.reset();
+//   })
+// })
 
 
 
@@ -138,8 +139,13 @@ api.getTrends()
   });
 
 buttonSearch.addEventListener('click', (e) => {
-  // window.location.reload();
     e.preventDefault()
+    if(gifsTypeSearch.contains(document.querySelector('.gifs__item'))) {
+      const gifsArray = Array.from(gifsTypeSearch.querySelectorAll('.gifs__item'));
+      gifsArray.forEach((gif) => {
+        gif.remove()
+      })
+    }
     searchStatus.classList.add('search__status_active')
     searchStatus.textContent = 'Please wait...'
     api.getSearch(inputSearch.value)

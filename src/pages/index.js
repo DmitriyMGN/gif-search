@@ -124,35 +124,35 @@ function handleFiles(files) {
 
 
 
-function handleFiles3(files) {
-    // let file = this.files[0];
-    // let img = document.createElement("img");
-    // img.classList.add("gifs__item");
-    // img.classList.add("gifs__item_type_uploaded");
-    // img.file = file;
-    // document.querySelector('.gifs_type_uploaded').appendChild(img);
+// function handleFiles3(files) {
+//     // let file = this.files[0];
+//     // let img = document.createElement("img");
+//     // img.classList.add("gifs__item");
+//     // img.classList.add("gifs__item_type_uploaded");
+//     // img.file = file;
+//     // document.querySelector('.gifs_type_uploaded').appendChild(img);
     
 
-    // console.log(file)
+//     // console.log(file)
 
-    // let reader = new FileReader();
-    // reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
-    // reader.readAsDataURL(file);
+//     // let reader = new FileReader();
+//     // reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
+//     // reader.readAsDataURL(file);
  
 
-    // let file = this.files[0];
-    // let img = createGif();
-    // img.classList.add("gifs__item");
-    // img.classList.add("gifs__item_type_uploaded");
-    // img.file = file;
-    // uploadedGif.replaceGif(img)
+//     // let file = this.files[0];
+//     // let img = createGif();
+//     // img.classList.add("gifs__item");
+//     // img.classList.add("gifs__item_type_uploaded");
+//     // img.file = file;
+//     // uploadedGif.replaceGif(img)
     
-    // let reader = new FileReader();
-    // reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
-    // reader.readAsDataURL(file);
+//     // let reader = new FileReader();
+//     // reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
+//     // reader.readAsDataURL(file);
 
     
-}
+// }
 
 
 

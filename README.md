@@ -1,12 +1,15 @@
-# Конкурсная работа: Be Animated
+# Gif search
 
-**Основное**
+**"Gif search"** - Приложение по поиску и добавлению гифок, взаимодействие с Giphy API. Проект выполнен Дмитрием Мысягины и Алексеем Киселевым.
 
-Приложение по поиску и добавлению гифок, взаимодействие с Giphy API
+# Применяемый стек:
+* HTML
+* CSS
+* БЭМ
+* JavaScript
+* Работа с Api
+* Webpack
+* NPM
 
-**Технологии**
-
-HTML, CSS, БЭМ, JavaScript, NPM, WebPack, API.
-
-**Ссылка на GitHub Pages**
+# Ссылка на GitHub Pages
 https://DmitriyMGN.github.io/gif-search/
